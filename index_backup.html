@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Woodward</title>
+
+    <!-- Import Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #e1e1e1, #f1f1f1); /* Add a background gradient */
+            color: #333; /* Dark gray text for contrast */
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            flex-direction: column; /* Stack header, main, footer */
+        }
+
+        /* Header */
+        header {
+            background-color: #2C3E50; /* Dark navy blue */
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        /* Navigation Links */
+        nav a {
+            color: #f1f1f1; /* Light gray for navigation links */
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        nav a:hover {
+            color: #d1d1d1; /* Slightly darker gray on hover */
+        }
+
+        /* Main Content */
+        main {
+            flex: 1; /* Allow main content to expand */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center vertically */
+            align-items: center; /* Center horizontally */
+            text-align: center;
+        }
+
+        h1 {
+            color: #2C3E50; /* Match header navy for consistency */
+            font-size: 4rem; /* Increase font size for title */
+            margin-bottom: 1rem;
+        }
+
+        /* Style for the changing text */
+        #changing-text {
+            font-size: 2rem;
+            color: #444;
+            opacity: 1;
+            transition: opacity 1s ease; /* Smooth transition for opacity */
+        }
+
+        /* Button Styles */
+        .button {
+            background-color: #2C3E50; /* Dark navy color to match header */
+            color: #fff; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            text-transform: uppercase;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+        }
+
+        /* Spacing between icon and text */
+        .button i {
+            margin-right: 8px;
+        }
+
+        /* Button hover effect */
+        .button:hover {
+            background-color: #1E2F40; /* Slightly darker shade on hover */
+            transform: scale(1.05); /* Add grow effect on hover */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #c9c9c9; /* Slightly darker than main background */
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Container for buttons in the footer */
+        .footer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between buttons */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#about">About Me</a> |
+            <a href="#services">Services</a> |
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Alex Woodward</h1>
+        <p id="changing-text">Software Developer</p> <!-- Placeholder for changing text -->
+    </main>
+
+    <footer>
+        <div class="footer-buttons">
+            <a href="https://github.com/alex-woodward" class="button" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/turner-a-woodward/" class="button" target="_blank">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        const phrases = [
+            "Computer Enthusiast",
+            "Electrical Engineer",
+            "Full-Time Nerd",
+            "Robot Lover",
+            "Math Tutor",
+            "Coding Mentor",
+            "AI Enthusiast",
+            "Technology Advocate",
+            "Problem Solver",
+            "Tech Educator",
+            "Controls Systems Savant",
+            "Open Source Contributor",
+            "3D Printing Hobbyist",
+            "Web Developer",
+            "STEM Advocate",
+            "Embedded Systems Engineer",
+            "Linux User",
+            "Python Wizard",
+            "JavaScript Enthusiast",
+            "Engine Enabler",
+            "Car Coder",
+        ];
+
+        let shuffledPhrases = shuffleArray([...phrases]); // Shuffle initially
+        let currentIndex = 0;
+        const changingText = document.getElementById("changing-text");
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function changeText() {
+            // Fade out
+            changingText.style.opacity = 0;
+            
+            // After fade out, change the text and fade back in
+            setTimeout(() => {
+                // If all phrases have been shown, reshuffle
+                if (currentIndex >= shuffledPhrases.length) {
+                    shuffledPhrases = shuffleArray([...phrases]);
+                    currentIndex = 0;
+                }
+
+                // Set the new text
+                changingText.textContent = shuffledPhrases[currentIndex];
+                currentIndex++;
+
+                // Fade in
+                changingText.style.opacity = 1;
+            }, 1000); // Time matches the transition duration (1s)
+        }
+
+        // Change text every 6 seconds (including fade duration)
+        setInterval(changeText, 6000);
+    </script>
+</body>
+</html>
