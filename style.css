@@ -1,0 +1,92 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
+    margin: 0;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    padding: 0;
+    background: linear-gradient(to right, #e1e1e1, #f1f1f1); /* Add a background gradient */
+    color: #333; /* Dark gray text for contrast */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column; /* Stack header, main, footer */
+}   
+
+/* Main Content */
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-content {
+    display: inline-block;
+    text-align: left;
+    position: relative;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 0;
+    display: block;
+    text-align: left;
+    position: relative;
+    line-height: 1.2;
+}
+
+#changing-text {
+    font-size: 2.5rem;
+    color: #ff6347;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    text-align: left;
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+}
+
+
+/* Button Styles */
+.button {
+    background-color: #2C3E50; /* Dark navy color to match header */
+    color: #fff; /* White text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Spacing between icon and text */
+.button i {
+    margin-right: 8px;
+}
+
+/* Button hover effect */
+.button:hover {
+    background-color: #1E2F40; /* Slightly darker shade on hover */
+    transform: scale(1.05); /* Add grow effect on hover */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+/* Footer */
+footer {
+    background-color: linear-gradient(to right, #f1f1f1, #e1e1e1    ); /* Slightly darker than main background */
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Container for buttons in the footer */
+.footer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+}
