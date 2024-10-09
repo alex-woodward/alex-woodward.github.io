@@ -1,24 +1,71 @@
 /* Global Styles */
 body {
-    font-family: 'Roboto', sans-serif; /* Apply Roboto font */
-    margin: 0;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    padding: 0;
-    background: linear-gradient(to right, #e1e1e1, #f1f1f1); /* Add a background gradient */
-    color: #333; /* Dark gray text for contrast */
-    min-height: 100vh; /* Full viewport height */
+    background: linear-gradient(135deg, #4f646f, #535657);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* Sidebar */
+.sidebar {
+    background-color: #f0f0f0;
+    width: 250px;
+    height: 100vh;
+    padding: 20px;
     display: flex;
-    flex-direction: column; /* Stack header, main, footer */
-}   
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed; /* Fixes the sidebar in place */
+    left: 0; /* Aligns the sidebar to the left */
+    top: 0;
+    z-index: 100; /* Ensures the sidebar is above the main content */
+}
+
+.profile {
+    text-align: center;
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.profile h1 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.profile p {
+    font-size: 0.8em;
+    color: #666;
+}
 
 /* Main Content */
 main {
-    flex: 1; /* Take up available space between header and footer */
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-left: 270px; /* Sidebar width offset */
+    padding: 20px; /* Reduce padding for more compact layout */
+    min-height: 100vh;
+    margin-top: -10rem; /* Decrease margin-top to bring content higher */
 }
 
 .hero-content {
@@ -48,10 +95,7 @@ h1 {
     left: 0;
 }
 
-/* Button Styles */
 .button {
-    background-color: #2C3E50; /* Dark navy color to match header */
-    color: #fff; /* White text color */
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -61,8 +105,14 @@ h1 {
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.button:hover {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Shadow grows on hover */
+}
+
 
 /* Spacing between icon and text */
 .button i {
@@ -71,28 +121,108 @@ h1 {
 
 /* Button hover effect */
 .button:hover {
-    background-color: #1E2F40; /* Slightly darker shade on hover */
     transform: scale(1.05); /* Add grow effect on hover */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
-/* Footer */
-footer {
-    background: linear-gradient(to right, #f1f1f1, #e1e1e1); /* Slightly darker than main background */
-    text-align: center;
-    padding: 1rem;
-    flex-shrink: 0; /* Ensure footer stays at the bottom */
-    width: 100%;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
-    position: relative;
+/* Sidebar */
+.sidebar {
+    background-color: #DEE7E7;
+    width: 250px;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed; /* Fixes the sidebar in place */
+    left: 0; /* Aligns the sidebar to the left */
+    top: 0;
+    z-index: 100; /* Ensures the sidebar is above the main content */
 }
 
-/* Container for buttons in the footer */
-.footer-buttons {
+.profile {
+    text-align: center;
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.profile h1 {
+    color: #ff6347;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.profile p {
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* Sidebar Navigation */
+nav ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+nav ul li {
+    margin: 15px 0; /* Adds space between each link */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1rem;
+    padding: 10px;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, border 0.3s ease;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif; /* Apply Poppins to sidebar buttons */
+}
+
+
+nav ul li a:hover {
+    background-color: #ff6347; /* Background highlight on hover */
+    color: #fff; /* Text color change on hover */
+    border: 2px solid #4F646F; /* Adds a border around the link on hover */
+}
+
+
+/* Sidebar Footer */
+footer {
+    text-align: center;
+    margin-top: auto; /* Pushes the footer to the bottom */
+    padding-bottom: 15px; /* Adds space from the bottom */
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.social-links {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Space between buttons */
-    flex-wrap: wrap; /* Allows buttons to wrap if needed but stay side by side */
+    gap: 15px; /* Space between the social icons */
+    padding-bottom: 1rem; /* Space before the very bottom of the page */
+}
+
+.social-links a {
+    color: #666;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #007bff; /* Color on hover */
 }
 
 /* Responsive adjustments for tablets and small screens */
@@ -108,6 +238,17 @@ footer {
     .button {
         font-size: 0.9rem;
         padding: 8px 16px;
+    }
+
+    .sidebar {
+        width: 100%; /* Sidebar spans full width on smaller screens */
+        height: auto; /* Sidebar will adjust height */
+        position: relative; /* Sidebar stacks above content */
+    }
+
+    main {
+        margin-left: 0;
+        padding: 20px;
     }
 }
 
