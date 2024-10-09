@@ -87,4 +87,6 @@ function changeText() {
 }
 
 // Start the typing effect when the page loads
-changeText();
+document.addEventListener("DOMContentLoaded", function() {
+    changeText();
+});
