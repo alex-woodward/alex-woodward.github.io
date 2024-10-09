@@ -13,7 +13,7 @@ body {
 
 /* Main Content */
 main {
-    flex: 1;
+    flex: 1; /* Take up available space between header and footer */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -81,6 +81,10 @@ footer {
     background: linear-gradient(to right, #f1f1f1, #e1e1e1); /* Slightly darker than main background */
     text-align: center;
     padding: 1rem;
+    flex-shrink: 0; /* Ensure footer stays at the bottom */
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    position: relative;
 }
 
 /* Container for buttons in the footer */
@@ -88,6 +92,7 @@ footer {
     display: flex;
     justify-content: center;
     gap: 20px; /* Space between buttons */
+    flex-wrap: wrap; /* Allows buttons to wrap if needed but stay side by side */
 }
 
 /* Responsive adjustments for tablets and small screens */
@@ -121,9 +126,10 @@ footer {
         padding: 6px 12px;
     }
 
-    /* Footer buttons stack vertically on small screens */
+    /* Ensure buttons remain side by side on mobile */
     .footer-buttons {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row;
+        flex-wrap: nowrap; /* Prevent wrapping */
+        gap: 10px; /* Smaller gap for mobile */
     }
 }
