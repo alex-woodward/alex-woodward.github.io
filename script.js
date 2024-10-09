@@ -56,6 +56,10 @@ function typeText(text, callback) {
     type();
 }
 
+function toggleSidebar() {
+    document.body.classList.toggle('show-sidebar');
+}
+
 function eraseText(callback) {
     let length = changingText.textContent.length;
     function erase() {

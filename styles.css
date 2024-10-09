@@ -225,35 +225,39 @@ footer p {
     color: #007bff; /* Color on hover */
 }
 
-/* Responsive adjustments for tablets and small screens */
+/* Responsive adjustments for mobile screens */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 3rem;
-    }
-
-    #changing-text {
-        font-size: 2rem;
-    }
-
-    .button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-    }
-
+    /* Sidebar is hidden by default */
     .sidebar {
-        width: 100%; /* Sidebar spans full width on smaller screens */
-        height: auto; /* Sidebar will adjust height */
-        position: relative; /* Sidebar stacks above content */
+        visibility: hidden; /* Hidden by default */
+        background-color: #DEE7E7;
+        width: 250px;
+        height: 100vh;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: fixed;
+        left: -300px; /* Offscreen by the width of the sidebar */
+        top: 0;
+        z-index: 100;
+        transition: left 0.3s ease, visibility 0s 0.3s; /* Smooth transition with visibility delay */
     }
 
+    /* When the sidebar is shown, slide it into view */
+    .show-sidebar .sidebar {
+        visibility: visible; /* Make sidebar visible */
+        left: 0; /* Slide the sidebar into view */
+        transition: left 0.3s ease, visibility 0s; /* Reset visibility immediately */
+    }
+
+    /* Main content area */
     main {
         margin-left: 0;
-        padding: 20px;
+        padding: 10px; /* Reduce padding for smaller screens */
+        transition: transform 0.3s ease; /* Smooth transition for content */
     }
-}
 
-/* Responsive adjustments for mobile screens */
-@media (max-width: 480px) {
     h1 {
         font-size: 2.5rem;
     }
@@ -267,10 +271,44 @@ footer p {
         padding: 6px 12px;
     }
 
-    /* Ensure buttons remain side by side on mobile */
-    .footer-buttons {
-        flex-direction: row;
-        flex-wrap: nowrap; /* Prevent wrapping */
-        gap: 10px; /* Smaller gap for mobile */
+    /* Hamburger menu for smaller screens */
+    .hamburger {
+        display: block;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 400; /* Higher than the sidebar */
+        cursor: pointer;
     }
+
+    .hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+        margin: 5px 0;
+    }
+
+    /* When sidebar is open, keep the hamburger visible */
+    .show-sidebar .hamburger {
+        z-index: 400; /* Keep hamburger above the sidebar */
+    }
+
+    /* Move the main area to the right when the sidebar is open */
+    .show-sidebar main {
+        transform: translateX(15%); /* Shift content to the right */
+    }
+
+    /* Sidebar styling when visible */
+    .show-sidebar .sidebar {
+        display: flex;
+        position: fixed;
+        left: 0;
+        width: 25%;
+        height: 100vh;
+        z-index: 300;
+        transition: left 0.3s ease; /* Smooth transition for the sidebar */
+    }
+}
+
+
 }
