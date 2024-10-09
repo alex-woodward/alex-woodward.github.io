@@ -6,7 +6,7 @@ body {
     padding: 0;
     background: linear-gradient(to right, #e1e1e1, #f1f1f1); /* Add a background gradient */
     color: #333; /* Dark gray text for contrast */
-    height: 100vh; /* Full viewport height */
+    min-height: 100vh; /* Full viewport height */
     display: flex;
     flex-direction: column; /* Stack header, main, footer */
 }   
@@ -48,7 +48,6 @@ h1 {
     left: 0;
 }
 
-
 /* Button Styles */
 .button {
     background-color: #2C3E50; /* Dark navy color to match header */
@@ -79,7 +78,7 @@ h1 {
 
 /* Footer */
 footer {
-    background-color: linear-gradient(to right, #f1f1f1, #e1e1e1    ); /* Slightly darker than main background */
+    background: linear-gradient(to right, #f1f1f1, #e1e1e1); /* Slightly darker than main background */
     text-align: center;
     padding: 1rem;
 }
@@ -89,4 +88,42 @@ footer {
     display: flex;
     justify-content: center;
     gap: 20px; /* Space between buttons */
+}
+
+/* Responsive adjustments for tablets and small screens */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    #changing-text {
+        font-size: 2rem;
+    }
+
+    .button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    #changing-text {
+        font-size: 1.8rem;
+    }
+
+    .button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    /* Footer buttons stack vertically on small screens */
+    .footer-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
