@@ -3,53 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Woodward</title>
+    <title>Alex Woodward — Electrical Engineer</title>
+    <meta name="description" content="Alex Woodward — electrical engineer working across control systems, embedded hardware, rapid prototyping, and software.">
+    <meta name="theme-color" content="#3d4f59">
+    <meta property="og:title" content="Alex Woodward — Electrical Engineer">
+    <meta property="og:description" content="Control systems, embedded hardware, rapid prototyping, and the software that ties them together.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23DEE7E7'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Arial,sans-serif' font-weight='700' font-size='28' fill='%23ff6347'%3EAW%3C/text%3E%3C/svg%3E">
 
-    <!-- Import Google Fonts: Roboto -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Fonts: Poppins (headings/nav), Roboto (body), JetBrains Mono (labels) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Font Awesome for icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="./styles.css">
-
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-    <div class="sidebar">
+    <aside class="sidebar" id="sidebar">
         <div class="profile">
-            <img src="https://media.licdn.com/dms/image/v2/D4E03AQF1hOlvrehiCg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1693522087927?e=2147483647&v=beta&t=i5ObYAvcrjnRctVtz16cnQOCtfJwbGgAXAF8rAfiGkI" alt="Profile Picture">
+            <div class="avatar" data-initials="AW">
+            <img src="https://media.licdn.com/dms/image/v2/D4E03AQF1hOlvrehiCg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1693522087927?e=2147483647&v=beta&t=i5ObYAvcrjnRctVtz16cnQOCtfJwbGgAXAF8rAfiGkI" alt="Portrait of Alex Woodward" width="112" height="112" referrerpolicy="no-referrer" onerror="this.remove()">
+            </div>
             <h1>Alex Woodward</h1>
+            <p>Electrical Engineer</p>
         </div>
-        <nav>
+        <nav aria-label="Primary">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#home" class="active"><span class="nav-index">01</span>Home</a></li>
+                <li><a href="#about"><span class="nav-index">02</span>About</a></li>
+                <li><a href="#services"><span class="nav-index">03</span>Services</a></li>
+                <li><a href="#contact"><span class="nav-index">04</span>Contact</a></li>
             </ul>
         </nav>
         <footer>
-            <p>&copy; Copyright 2024 All rights reserved.</p>
             <div class="social-links">
-                <a href="https://github.com/alex-woodward/"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/turner-woodward"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/alex-woodward/" aria-label="GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/turner-woodward" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
             </div>
+            <p>&copy; <span id="year">2024</span> Alex Woodward</p>
         </footer>
-    </div>
+    </aside>
+
+    <div class="scrim" onclick="toggleSidebar(false)"></div>
+
     <main>
-      <div class="hero-content">
-        <h1>I'm Alex Woodward,</h1>
-        <span id="changing-text"></span>
-    </div>    
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">Controls · Embedded · Prototyping</p>
+                <h2 class="hero-title">I'm Alex Woodward,</h2>
+                <p class="typed-line" aria-live="polite"><span id="changing-text"></span><span class="caret" aria-hidden="true"></span></p>
+                <p class="lede">
+                    I design control systems, embedded hardware, and the software that ties
+                    them together &mdash; and I enjoy teaching others to do the same.
+                </p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#services">What I do <i class="fas fa-arrow-down"></i></a>
+                    <a class="button button-ghost" href="#contact">Get in touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section reveal">
+            <header class="section-header">
+                <span class="section-index">02</span>
+                <h2>About</h2>
+            </header>
+            <div class="about-grid">
+                <div class="about-copy">
+                    <p>
+                        I'm an electrical engineer who likes working where hardware meets software.
+                        Most of my time goes into control systems and embedded work &mdash; getting
+                        sensors, motors, and microcontrollers to behave &mdash; with plenty of CAD
+                        and 3D printing along the way to turn ideas into parts I can put on a bench.
+                    </p>
+                    <p>
+                        On the software side I reach for Python and JavaScript, live in Linux, and
+                        contribute to open source when I can. Outside of engineering work I tutor
+                        math and mentor new programmers, because the best way to really understand
+                        something is to explain it to someone else.
+                    </p>
+                </div>
+                <dl class="toolbox">
+                    <div>
+                        <dt>Hardware</dt>
+                        <dd>Control systems</dd>
+                        <dd>Embedded systems</dd>
+                        <dd>Robotics</dd>
+                    </div>
+                    <div>
+                        <dt>Software</dt>
+                        <dd>Python</dd>
+                        <dd>JavaScript</dd>
+                        <dd>Linux</dd>
+                    </div>
+                    <div>
+                        <dt>Making</dt>
+                        <dd>CAD</dd>
+                        <dd>3D printing</dd>
+                        <dd>Prototyping</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+
+        <section id="services" class="section reveal">
+            <header class="section-header">
+                <span class="section-index">03</span>
+                <h2>Services</h2>
+            </header>
+            <ol class="service-list">
+                <li>
+                    <span class="service-index">A</span>
+                    <h3>Control Systems</h3>
+                    <p>Modelling, tuning, and implementing feedback control for motors, mechanisms, and vehicles &mdash; from the math on paper to a loop that actually settles.</p>
+                </li>
+                <li>
+                    <span class="service-index">B</span>
+                    <h3>Embedded &amp; Hardware</h3>
+                    <p>Microcontroller firmware, sensor integration, and bring-up &mdash; taking a circuit from schematic to a working prototype.</p>
+                </li>
+                <li>
+                    <span class="service-index">C</span>
+                    <h3>Rapid Prototyping</h3>
+                    <p>CAD modelling and 3D-printed parts to get mechanical ideas off the screen and onto the bench quickly, then iterate.</p>
+                </li>
+                <li>
+                    <span class="service-index">D</span>
+                    <h3>Software &amp; Web</h3>
+                    <p>Python tooling, automation scripts, and clean web front-ends &mdash; including the site you're reading.</p>
+                </li>
+                <li>
+                    <span class="service-index">E</span>
+                    <h3>Tutoring &amp; Mentoring</h3>
+                    <p>Patient, practical help with math and programming for students getting started in STEM or pushing to the next level.</p>
+                </li>
+            </ol>
+        </section>
+
+        <section id="contact" class="section contact reveal">
+            <header class="section-header">
+                <span class="section-index">04</span>
+                <h2>Contact</h2>
+            </header>
+            <p class="contact-title">Let's build something.</p>
+            <p class="contact-copy">
+                Whether it's a control loop that won't settle, a prototype that needs to exist
+                by Friday, or a student who wants a patient tutor &mdash; I'd like to hear about it.
+            </p>
+            <ul class="contact-links">
+                <li>
+                    <a href="https://www.linkedin.com/in/turner-woodward" target="_blank" rel="noopener">
+                        <span class="contact-label"><i class="fab fa-linkedin-in"></i>LinkedIn</span>
+                        <span class="contact-handle">in/turner-woodward</span>
+                        <i class="fas fa-arrow-right contact-arrow"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/alex-woodward/" target="_blank" rel="noopener">
+                        <span class="contact-label"><i class="fab fa-github"></i>GitHub</span>
+                        <span class="contact-handle">@alex-woodward</span>
+                        <i class="fas fa-arrow-right contact-arrow"></i>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <p class="colophon">Designed &amp; built by Alex Woodward.</p>
     </main>
+
     <!-- Hamburger menu -->
-    <div class="hamburger" onclick="toggleSidebar()">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+    <button class="hamburger" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>

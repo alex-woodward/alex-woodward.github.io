@@ -1,35 +1,33 @@
 const phrases = [
-    "Computer Enthusiast.",
     "Electrical Engineer.",
-    "Full-Time Nerd.",
+    "Control Systems Engineer.",
+    "Embedded Systems Engineer.",
     "Robot Designer.",
-    "Math Tutor.",
-    "Coding Mentor.",
-    "AI Enthusiast.",
-    "Technology Advocate.",
-    "Problem Solver.",
-    "Tech Educator.",
-    "Controls Systems Superhero.",
-    "Open Source Contributor.",
     "CAD Creator.",
     "3D Printing Pro.",
-    "Web Developer.",
-    "STEM Advocate.",
-    "Embedded Systems Engineer.",
-    "Linux User.",
     "Python Wizard.",
     "JavaScript Journeyman.",
-    "Engine Enabler.",
+    "Web Developer.",
+    "Linux User.",
+    "Open Source Contributor.",
+    "AI Enthusiast.",
+    "Problem Solver.",
+    "Math Tutor.",
+    "Coding Mentor.",
+    "STEM Advocate.",
     "Car Coder."
 ];
 
-let shuffledPhrases = shuffleArray([...phrases]);
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// Always open on "Electrical Engineer." so the first impression is the headline role
+let shuffledPhrases = [phrases[0], ...shuffleArray(phrases.slice(1))];
 let currentIndex = 0;
 const changingText = document.getElementById("changing-text");
 
-let typingSpeed = 100; // Speed of typing in milliseconds
-let erasingSpeed = 50;  // Speed of erasing in milliseconds
-let delayBetweenPhrases = 2000; // Delay between erasing and starting the next phrase
+let typingSpeed = 85;   // Base speed of typing in milliseconds
+let erasingSpeed = 40;  // Speed of erasing in milliseconds
+let delayBetweenPhrases = 1800; // Pause while a phrase is fully shown
 
 // Ensure the element starts with an empty string
 changingText.textContent = "";
@@ -48,16 +46,13 @@ function typeText(text, callback) {
         if (i < text.length) {
             changingText.textContent += text.charAt(i);
             i++;
-            setTimeout(type, typingSpeed);
+            // Slight jitter so the typing feels human rather than mechanical
+            setTimeout(type, typingSpeed + Math.random() * 60);
         } else {
             setTimeout(callback, delayBetweenPhrases);
         }
     }
     type();
-}
-
-function toggleSidebar() {
-    document.body.classList.toggle('show-sidebar');
 }
 
 function eraseText(callback) {
@@ -68,7 +63,7 @@ function eraseText(callback) {
             length--;
             setTimeout(erase, erasingSpeed);
         } else {
-            callback();
+            setTimeout(callback, 300);
         }
     }
     erase();
@@ -83,14 +78,75 @@ function changeText() {
     const currentPhrase = shuffledPhrases[currentIndex];
     changingText.textContent = ""; // Clear text before typing
     typeText(currentPhrase, () => {
-        setTimeout(() => eraseText(() => {
+        eraseText(() => {
             currentIndex++;
             changeText();
-        }), delayBetweenPhrases);
+        });
     });
 }
 
-// Start the typing effect when the page loads
+// Reduced motion: swap whole phrases instead of typing them
+function cycleStatic() {
+    changingText.textContent = shuffledPhrases[currentIndex % shuffledPhrases.length];
+    currentIndex++;
+    setTimeout(cycleStatic, 3000);
+}
+
+// Sidebar (mobile drawer)
+const hamburger = document.querySelector(".hamburger");
+
+function toggleSidebar(force) {
+    const open = document.body.classList.toggle("show-sidebar", force);
+    hamburger.setAttribute("aria-expanded", String(open));
+    hamburger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+}
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") toggleSidebar(false);
+});
+
+// Highlight the nav link for the section currently in view
+function initScrollSpy() {
+    const links = document.querySelectorAll("nav a");
+    const sections = document.querySelectorAll("main section[id]");
+
+    links.forEach((link) => link.addEventListener("click", () => toggleSidebar(false)));
+
+    const spy = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            links.forEach((link) => {
+                link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+            });
+        });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+
+    sections.forEach((section) => spy.observe(section));
+}
+
+// Fade sections in as they scroll into view
+function initReveal() {
+    const revealer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                revealer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".reveal").forEach((el) => revealer.observe(el));
+}
+
+// Start everything when the page loads
 document.addEventListener("DOMContentLoaded", function() {
-    changeText();
+    document.getElementById("year").textContent = new Date().getFullYear();
+    initScrollSpy();
+    initReveal();
+
+    if (prefersReducedMotion) {
+        cycleStatic();
+    } else {
+        setTimeout(changeText, 600);
+    }
 });
